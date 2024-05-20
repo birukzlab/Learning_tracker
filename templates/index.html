@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Learning Tracker</h1>
+    <form id="plan-form" method="post" action="/add">
+        <div id="subjects-container">
+            <div class="subject-input">
+                <input type="text" name="subject" placeholder="Subject" required>
+                <input type="number" name="days" placeholder="Number of Days" required>
+                <input type="number" step="0.1" name="hours_per_day" placeholder="Hours per Day" required>
+            </div>
+        </div>
+        <button type="button" onclick="addSubject()">Add More Subject</button>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Plan Summary</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Days</th>
+                <th>Hours per Day</th>
+                <th>Total Hours per Day</th>
+                <th>Total Hours per Month</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in plan_data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Daily Study Timer</h2>
+    <div>
+        <select id="subject-select">
+            <option value="" disabled selected>Select Subject</option>
+            {% for row in plan_data %}
+                <option value="{{ row[0] }}">{{ row[0] }}</option>
+            {% endfor %}
+        </select>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="stopTimer()">Stop</button>
+        <p id="timer">00:00:00</p>
+    </div>
+
+    <h2>Timer Summary</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Daily Hours</th>
+                <th>Rolling Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in timer_data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function addSubject() {
+            const container = document.getElementById('subjects-container');
+            const newSubject = document.createElement('div');
+            newSubject.className = 'subject-input';
+            newSubject.innerHTML = `
+                <input type="text" name="subject" placeholder="Subject" required>
+                <input type="number" name="days" placeholder="Number of Days" required>
+                <input type="number" step="0.1" name="hours_per_day" placeholder="Hours per Day" required>
+            `;
+            container.appendChild(newSubject);
+        }
+
+        let timer;
+        let startTime;
+        let selectedSubject;
+        let dailyElapsed = 0;
+
+        function startTimer() {
+            selectedSubject = document.getElementById('subject-select').value;
+            if (!selectedSubject) {
+                alert('Please select a subject');
+                return;
+            }
+            startTime = new Date();
+            timer = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            if (timer) {
+                clearInterval(timer);
+                const endTime = new Date();
+                dailyElapsed = (endTime - startTime) / 1000 / 60 / 60; // convert ms to hours
+
+                fetch('/log_time', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ subject: selectedSubject, dailyElapsed }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Time logged successfully!');
+                        location.reload(); // Reload the page to reflect updated data
+                    } else {
+                        alert('Error logging time.');
+                    }
+                });
+
+                document.getElementById('timer').innerText = '00:00:00';
+            }
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = Math.floor((now - startTime) / 1000);
+            const hours = Math.floor(diff / 3600);
+            const minutes = Math.floor((diff % 3600) / 60);
+            const seconds = diff % 60;
+
+            document.getElementById('timer').innerText = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="tracker-content">
+    <h1>Daily Time Tracker</h1>
+
+    <div class="timer-section">
+        <h2>Start Timer</h2>
+        <form action="{{ url_for('start_timer') }}" method="post">
+            <label for="subject-start">Subject:</label>
+            <select id="subject-start" name="subject" required>
+                {% for plan in postgres_plans %}
+                    <option value="{{ plan[2] }}">{{ plan[2] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="timer-button">Start Timer</button>
+        </form>
+
+        <h2>Stop Timer</h2>
+        <form action="{{ url_for('stop_timer') }}" method="post">
+            <label for="subject-stop">Subject:</label>
+            <select id="subject-stop" name="subject" required>
+                {% for plan in postgres_plans %}
+                    <option value="{{ plan[2] }}">{{ plan[2] }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="timer-button">Stop Timer</button>
+        </form>
+    </div>
+
+    <div class="summary-section">
+        <h2>Timer Summary (Google Sheets)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Day of the Week</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Subject</th>
+                    <th>Number of Hours (Daily)</th>
+                    <th>Planned Daily Hours</th>
+                    <th>Total Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for timer in google_timer_data %}
+                    <tr>
+                        <td>{{ timer[0] }}</td>
+                        <td>{{ timer[1] }}</td>
+                        <td>{{ timer[2] }}</td>
+                        <td>{{ timer[3] }}</td>
+                        <td>{{ timer[4] }}</td>
+                        <td>{{ timer[5] }}</td>
+                        <td>{{ timer[6] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Timer Summary (PostgreSQL)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Day of the Week</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Subject</th>
+                    <th>Number of Hours (Daily)</th>
+                    <th>Planned Daily Hours</th>
+                    <th>Total Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for timer in postgres_timers %}
+                    <tr>
+                        <td>{{ timer[1] }}</td>
+                        <td>{{ timer[2] }}</td>
+                        <td>{{ timer[3] }}</td>
+                        <td>{{ timer[4] }}</td>
+                        <td>{{ timer[5] }}</td>
+                        <td>{{ timer[6] }}</td>
+                        <td>{{ timer[7] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

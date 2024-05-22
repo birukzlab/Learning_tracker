@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="planning-content">
+    <h1>Plan Your Study Sessions</h1>
+    <form action="{{ url_for('add_plan') }}" method="post">
+        <div class="form-group">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+        <div class="form-group">
+            <label for="number_of_days">Number of Days:</label>
+            <input type="number" id="number_of_days" name="number_of_days" required>
+        </div>
+        <div class="form-group">
+            <label for="number_of_hours_per_day">Number of Hours per Day:</label>
+            <input type="number" step="0.1" id="number_of_hours_per_day" name="number_of_hours_per_day" required>
+        </div>
+        <button type="submit" class="submit-button">Add Plan</button>
+    </form>
+
+    <div class="summary-section">
+        <h2>Plan Summary (Google Sheets)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date of Input</th>
+                    <th>Subject</th>
+                    <th>Number of Days</th>
+                    <th>Number of Hours per Day</th>
+                    <th>Total Hours per Month</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plan in google_plan_data %}
+                    <tr>
+                        <td>{{ plan[0] }}</td>
+                        <td>{{ plan[1] }}</td>
+                        <td>{{ plan[2] }}</td>
+                        <td>{{ plan[3] }}</td>
+                        <td>{{ plan[4] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Plan Summary (PostgreSQL)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date of Input</th>
+                    <th>Subject</th>
+                    <th>Number of Days</th>
+                    <th>Number of Hours per Day</th>
+                    <th>Total Hours per Month</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plan in postgres_plans %}
+                    <tr>
+                        <td>{{ plan[1] }}</td>
+                        <td>{{ plan[2] }}</td>
+                        <td>{{ plan[3] }}</td>
+                        <td>{{ plan[4] }}</td>
+                        <td>{{ plan[5] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,50 +1,139 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
 }
 
-h1 {
-    text-align: center;
+nav {
+    background-color: #004085;
+    color: white;
+    padding: 1em 0;
 }
 
-form {
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #003366;
+    border-radius: 5px;
+}
+
+header img {
+    max-width: 150px;
+    display: block;
+    margin: 20px auto;
+}
+
+main {
+    padding: 2em;
+    margin: auto;
+    max-width: 1200px;
+    text-align: center;
+    flex: 1;
+}
+
+.planning-content {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.planning-content h1 {
+    font-size: 2.5em;
     margin-bottom: 20px;
 }
 
-input, button {
-    margin: 5px;
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
     padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-size: 1em;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
+.submit-button:hover {
+    background-color: #ff5733;
 }
 
-th, td {
-    padding: 10px;
+.summary-section h2 {
+    font-size: 1.8em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #004085;
+}
+
+.summary-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+.summary-section th, .summary-section td {
     border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
 }
 
-th {
+.summary-section th {
+    background-color: #004085;
+    color: white;
+}
+
+.summary-section tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-#timer {
+footer {
+    background-color: #004085;
+    color: white;
     text-align: center;
-    font-size: 2em;
-    margin-top: 20px;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-select, button {
-    margin: 5px;
-    padding: 10px;
-    font-size: 1em;
-}
+
+
+
+
+
+
+
 

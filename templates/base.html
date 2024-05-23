@@ -9,23 +9,37 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('planning') }}">Planning</a></li>
-            <li><a href="{{ url_for('tracker') }}">Daily Time Tracker</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('planning') }}">Planning</a></li>
+                <li><a href="{{ url_for('tracker') }}">Daily Time Tracker</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </div>
     </nav>
-    <header>
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
-    </header>
     <main>
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; 2024 Learning Tracker</p>
+        <div class="footer-container">
+            <p>&copy; 2024 Learning Tracker. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
+                <li><a href="{{ url_for('terms') }}">Terms of Service</a></li>
+            </ul>
+        </div>
     </footer>
 </body>
 </html>
+
+
+
 
 
 

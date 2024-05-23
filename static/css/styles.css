@@ -13,12 +13,24 @@ nav {
     padding: 1em 0;
 }
 
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo img {
+    max-width: 100px;
+}
+
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
 }
 
 nav ul li {
@@ -37,12 +49,6 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-header img {
-    max-width: 150px;
-    display: block;
-    margin: 20px auto;
-}
-
 main {
     padding: 2em;
     margin: auto;
@@ -51,43 +57,153 @@ main {
     flex: 1;
 }
 
-.planning-content {
+/* Styles specific to the Home page */
+.home-content {
+    text-align: center;
+    padding: 50px 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.home-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.home-content p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+.features {
+    padding: 50px 20px;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    color: #004085;
+}
+
+.feature-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card img {
+    max-width: 100px;
+    margin-bottom: 1em;
+}
+
+.feature-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    color: #004085;
+}
+
+.feature-card p {
+    font-size: 1em;
+    color: #666;
+}
+
+.testimonials {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    color: #004085;
+}
+
+.testimonial-card {
+    background-color: white;
+    padding: 20px;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    text-align: center;
+}
+
+.testimonial-card p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.testimonial-card h3 {
+    font-size: 1.2em;
+    color: #004085;
+}
+
+/* Styles specific to the Daily Time Tracker page */
+.tracker-content {
     text-align: center;
     padding: 50px 20px;
 }
 
-.planning-content h1 {
+.tracker-content h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
 }
 
-.form-group {
+.timer-section {
+    margin-bottom: 40px;
+}
+
+.timer-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.timer-section form {
     margin-bottom: 20px;
 }
 
+.form-group {
+    margin-bottom: 15px;
+}
+
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
+    margin-right: 10px;
 }
 
-.form-group input {
-    padding: 10px;
-    width: 100%;
-    max-width: 300px;
-    margin: auto;
+.form-group select {
+    padding: 5px;
+    margin-right: 10px;
 }
 
-.submit-button {
+.timer-button {
     padding: 10px 20px;
     background-color: #ff6f61;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
 }
 
-.submit-button:hover {
+.timer-button:hover {
     background-color: #ff5733;
 }
 
@@ -124,10 +240,147 @@ footer {
     color: white;
     text-align: center;
     padding: 1em;
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    bottom: 0;
+    position: relative;
 }
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.tracker-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.timer-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.timer-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.timer-button:hover {
+    background-color: #0056b3;
+}
+
+.timer-button.start {
+    background-color: #28a745;
+}
+
+.timer-button.start:hover {
+    background-color: #218838;
+}
+
+.timer-button.stop {
+    background-color: #dc3545;
+}
+
+.timer-button.stop:hover {
+    background-color: #c82333;
+}
+
+.notification-section {
+    margin-bottom: 20px;
+}
+
+.subject-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.subject-card {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.subject-card:hover {
+    transform: scale(1.05);
+}
+
+.subject-card h3 {
+    margin-top: 0;
+}
+
+.success-message {
+    color: #28a745;
+}
+
+.failure-message {
+    color: #dc3545;
+}
+
+.summary-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.summary-section th, .summary-section td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.summary-section th {
+    background-color: #343a40;
+    color: #fff;
+    font-weight: bold;
+}
+
+.summary-section tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.summary-section tr:hover {
+    background-color: #ddd;
+}
+
+.summary-section td {
+    background-color: #ffffff;
+}
+
+
+
+
+
+
+
 
 
 

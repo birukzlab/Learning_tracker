@@ -1,62 +1,62 @@
 {% extends "base.html" %}
+
 {% block content %}
 <div class="tracker-content">
     <h1>Daily Time Tracker</h1>
 
     <div class="timer-section">
         <h2>Start Timer</h2>
-        <form action="{{ url_for('start_timer') }}" method="post">
-            <label for="subject-start">Subject:</label>
-            <select id="subject-start" name="subject" required>
-                {% for plan in postgres_plans %}
-                    <option value="{{ plan[2] }}">{{ plan[2] }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit" class="timer-button">Start Timer</button>
+        <form id="start-form" action="{{ url_for('start_timer') }}" method="post" onsubmit="startTimer(event)">
+            <div class="form-group">
+                <label for="subject-start">Subject:</label>
+                <select id="subject-start" name="subject" required>
+                    {% for plan in postgres_plans %}
+                        <option value="{{ plan[1] }}">{{ plan[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="timer-button start">Start Timer</button>
         </form>
 
         <h2>Stop Timer</h2>
-        <form action="{{ url_for('stop_timer') }}" method="post">
-            <label for="subject-stop">Subject:</label>
-            <select id="subject-stop" name="subject" required>
-                {% for plan in postgres_plans %}
-                    <option value="{{ plan[2] }}">{{ plan[2] }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit" class="timer-button">Stop Timer</button>
+        <form id="stop-form" action="{{ url_for('stop_timer') }}" method="post" onsubmit="stopTimer(event)">
+            <div class="form-group">
+                <label for="subject-stop">Subject:</label>
+                <select id="subject-stop" name="subject" required>
+                    {% for plan in postgres_plans %}
+                        <option value="{{ plan[1] }}">{{ plan[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="timer-button stop">Stop Timer</button>
         </form>
     </div>
 
-    <div class="summary-section">
-        <h2>Timer Summary (Google Sheets)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Day of the Week</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Subject</th>
-                    <th>Number of Hours (Daily)</th>
-                    <th>Planned Daily Hours</th>
-                    <th>Total Hours</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for timer in google_timer_data %}
-                    <tr>
-                        <td>{{ timer[0] }}</td>
-                        <td>{{ timer[1] }}</td>
-                        <td>{{ timer[2] }}</td>
-                        <td>{{ timer[3] }}</td>
-                        <td>{{ timer[4] }}</td>
-                        <td>{{ timer[5] }}</td>
-                        <td>{{ timer[6] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div id="timer-display" style="display:none;">
+        <h3>Elapsed Time: <span id="elapsed-time">0</span></h3>
+    </div>
 
-        <h2>Timer Summary (PostgreSQL)</h2>
+    <div class="notification-section">
+        <h2>Weekly Plan Progress</h2>
+        <div class="subject-cards">
+            {% for subject, data in subjects.items() %}
+                <div class="subject-card">
+                    <h3>{{ subject }}</h3>
+                    <p>Total Weekly Plan Hours: {{ data.weekly_plan_hours }}</p>
+                    <p>Tracked Hours: {{ data.tracked_hours }}</p>
+                    <p>Remaining Hours: {{ data.remaining_hours }}</p>
+                    {% if data.remaining_hours <= 0 %}
+                        <div class="success-message">Congratulations! You have met your weekly plan for {{ subject }}.</div>
+                    {% elif datetime.now().date() > datetime.strptime(end_of_week, '%B %d, %Y').date() %}
+                        <div class="failure-message">You have not met your weekly plan for {{ subject }}. Please try to improve next week.</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="summary-section">
+        <h2>Timer Summary</h2>
         <table>
             <thead>
                 <tr>
@@ -85,5 +85,61 @@
         </table>
     </div>
 </div>
+
+<script>
+    let timer;
+    let startTime;
+
+    function startTimer(event) {
+        event.preventDefault();
+        startTime = new Date();
+        localStorage.setItem("startTime", startTime);
+        document.getElementById("timer-display").style.display = "block";
+        timer = setInterval(updateTimer, 1000); // Update every second
+        document.getElementById("start-form").submit();
+    }
+
+    function stopTimer(event) {
+        event.preventDefault();
+        clearInterval(timer);
+        document.getElementById("timer-display").style.display = "none";
+        localStorage.removeItem("startTime");
+        document.getElementById("stop-form").submit();
+    }
+
+    function updateTimer() {
+        let now = new Date();
+        let start = new Date(localStorage.getItem("startTime"));
+        let elapsedSeconds = Math.floor((now - start) / 1000);
+        let minutes = Math.floor(elapsedSeconds / 60);
+        let seconds = elapsedSeconds % 60;
+        document.getElementById("elapsed-time").innerText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    window.onload = function() {
+        if (localStorage.getItem("startTime")) {
+            startTime = new Date(localStorage.getItem("startTime"));
+            document.getElementById("timer-display").style.display = "block";
+            updateTimer();
+            timer = setInterval(updateTimer, 1000); // Update every second
+        }
+    }
+
+    document.querySelector('#start-form .timer-button.start').addEventListener('click', startTimer);
+    document.querySelector('#stop-form .timer-button.stop').addEventListener('click', stopTimer);
+</script>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

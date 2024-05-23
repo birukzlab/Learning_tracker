@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="planning-content">
-    <h1>Plan Your Study Sessions</h1>
-    <form action="{{ url_for('add_plan') }}" method="post">
+    <h1>Weekly Planning</h1>
+    <form action="{{ url_for('planning') }}" method="post">
         <div class="form-group">
             <label for="subject">Subject:</label>
             <input type="text" id="subject" name="subject" required>
@@ -19,39 +19,14 @@
     </form>
 
     <div class="summary-section">
-        <h2>Plan Summary (Google Sheets)</h2>
+        <h2>Weekly Plan (Week of {{ start_of_week }} - {{ end_of_week }})</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Date of Input</th>
                     <th>Subject</th>
                     <th>Number of Days</th>
                     <th>Number of Hours per Day</th>
-                    <th>Total Hours per Month</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for plan in google_plan_data %}
-                    <tr>
-                        <td>{{ plan[0] }}</td>
-                        <td>{{ plan[1] }}</td>
-                        <td>{{ plan[2] }}</td>
-                        <td>{{ plan[3] }}</td>
-                        <td>{{ plan[4] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <h2>Plan Summary (PostgreSQL)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date of Input</th>
-                    <th>Subject</th>
-                    <th>Number of Days</th>
-                    <th>Number of Hours per Day</th>
-                    <th>Total Hours per Month</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,8 +35,11 @@
                         <td>{{ plan[1] }}</td>
                         <td>{{ plan[2] }}</td>
                         <td>{{ plan[3] }}</td>
-                        <td>{{ plan[4] }}</td>
-                        <td>{{ plan[5] }}</td>
+                        <td>
+                            <form action="{{ url_for('delete_plan', plan_id=plan[0]) }}" method="post" style="display:inline;">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -69,4 +47,5 @@
     </div>
 </div>
 {% endblock %}
+
 

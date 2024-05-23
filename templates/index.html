@@ -1,30 +1,54 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="home-content">
-    <h1>Welcome to Learning Tracker</h1>
-    <p>Your ultimate tool to plan and track your study sessions efficiently.</p>
-    <div class="features">
-        <h2>Why Use Learning Tracker?</h2>
-        <div class="feature-cards">
-            <div class="feature-card">
-                <img src="{{ url_for('static', filename='images/plan.png') }}" alt="Plan">
-                <h3>Plan</h3>
-                <p>Create detailed study plans and set your learning goals.</p>
-            </div>
-            <div class="feature-card">
-                <img src="{{ url_for('static', filename='images/track.png') }}" alt="Track">
-                <h3>Track</h3>
-                <p>Log your study sessions and monitor your progress.</p>
-            </div>
-            <div class="feature-card">
-                <img src="{{ url_for('static', filename='images/analyze.png') }}" alt="Analyze">
-                <h3>Analyze</h3>
-                <p>Analyze your study patterns and optimize your learning.</p>
-            </div>
+<div class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Learning Tracker</h1>
+        <p>Your ultimate tool to plan and track your study sessions efficiently.</p>
+        <a href="{{ url_for('planning') }}" class="cta-button">Get Started</a>
+    </div>
+</div>
+
+<div class="about-section">
+    <h2>About Us</h2>
+    <p>Learning Tracker is designed to help you achieve your learning goals through efficient planning and tracking. Stay organized, stay on track, and accomplish more with Learning Tracker.</p>
+</div>
+
+<div class="features">
+    <h2>Features</h2>
+    <div class="feature-cards">
+        <div class="feature-card">
+            <img src="{{ url_for('static', filename='images/plan.png') }}" alt="Plan">
+            <h3>Plan</h3>
+            <p>Create detailed study plans and set your learning goals.</p>
+        </div>
+        <div class="feature-card">
+            <img src="{{ url_for('static', filename='images/track.png') }}" alt="Track">
+            <h3>Track</h3>
+            <p>Log your study sessions and monitor your progress.</p>
+        </div>
+        <div class="feature-card">
+            <img src="{{ url_for('static', filename='images/analyze.png') }}" alt="Analyze">
+            <h3>Analyze</h3>
+            <p>Analyze your study patterns and optimize your learning.</p>
         </div>
     </div>
 </div>
+
+<div class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-card">
+        <p>"Learning Tracker has transformed the way I study. It's easy to use and keeps me on track."</p>
+        <h3>- Jane Doe</h3>
+    </div>
+    <div class="testimonial-card">
+        <p>"I love how I can plan my study sessions in advance and see my progress over time. Highly recommended!"</p>
+        <h3>- John Smith</h3>
+    </div>
+</div>
 {% endblock %}
+
+
+
 
 
 

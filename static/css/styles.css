@@ -23,7 +23,7 @@ nav {
 }
 
 .logo img {
-    max-width: 100px;
+    max-width: 80px; /* Smaller logo */
 }
 
 nav ul {
@@ -57,14 +57,10 @@ main {
     flex: 1;
 }
 
-/* Styles specific to the Home page */
+/* Home Page Styles */
 .home-content {
     text-align: center;
     padding: 50px 20px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 .home-content h1 {
@@ -77,6 +73,21 @@ main {
     margin-bottom: 40px;
 }
 
+.home-content .button {
+    background-color: #ffc107;
+    color: #343a40;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.home-content .button:hover {
+    background-color: #e0a800;
+}
+
+/* Features Section */
 .features {
     padding: 50px 20px;
 }
@@ -124,38 +135,141 @@ main {
     color: #666;
 }
 
-.testimonials {
-    padding: 50px 20px;
-    background-color: #fff;
-    text-align: center;
+/* Authentication Section */
+.auth-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 20px;
 }
 
-.testimonials h2 {
-    font-size: 2.5em;
-    margin-bottom: 1em;
+.auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+}
+
+.auth-container h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
     color: #004085;
 }
 
-.testimonial-card {
+.auth-container .form-group {
+    margin-bottom: 20px;
+}
+
+.auth-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.auth-container .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.auth-container .submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-container .submit-button:hover {
+    background-color: #0056b3;
+}
+
+.auth-container p {
+    margin-top: 20px;
+}
+
+.auth-container p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-container p a:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Styles */
+.dashboard-main {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.dashboard-main h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.dashboard-main p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
     background-color: white;
     padding: 20px;
-    margin: 10px auto;
+    margin: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    max-width: 300px;
     text-align: center;
+    transition: transform 0.3s;
 }
 
-.testimonial-card p {
-    font-size: 1em;
-    color: #666;
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h2 {
+    font-size: 1.5em;
     margin-bottom: 10px;
-}
-
-.testimonial-card h3 {
-    font-size: 1.2em;
     color: #004085;
 }
+
+.card p {
+    font-size: 1em;
+    color: #666;
+}
+
+.card .button {
+    background-color: #ffc107;
+    color: #343a40;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.card .button:hover {
+    background-color: #e0a800;
+}
+
 
 /* Styles specific to the Daily Time Tracker page */
 .tracker-content {
@@ -235,6 +349,7 @@ main {
     background-color: #f2f2f2;
 }
 
+/* Footer Styles */
 footer {
     background-color: #004085;
     color: white;
@@ -261,44 +376,164 @@ footer {
     display: flex;
 }
 
-.tracker-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.footer-links li {
+    margin: 0 10px;
 }
 
-.timer-section {
-    display: flex;
-    justify-content: space-between;
+.footer-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links li a:hover {
+    text-decoration: underline;
+}
+
+/* Planning content */
+.planning-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.planning-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.planning-content .form-group {
+    margin-bottom: 20px;
+}
+
+.planning-content .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.planning-content .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.planning-content .submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.planning-content .submit-button:hover {
+    background-color: #0056b3;
+}
+
+.summary-section {
+    margin-top: 40px;
+}
+
+.summary-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.summary-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.summary-section th, .summary-section td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.summary-section th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.summary-section .delete-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.summary-section .delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Tracker content */
+.tracker-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tracker-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.timer-section, .notification-section, .summary-section {
+    margin-bottom: 40px;
+}
+
+.timer-section h2, .notification-section h2, .summary-section h2 {
+    font-size: 2em;
     margin-bottom: 20px;
 }
 
 .form-group {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group select, .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .timer-button {
-    display: inline-block;
     padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
     border: none;
     border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
 .timer-button:hover {
     background-color: #0056b3;
-}
-
-.timer-button.start {
-    background-color: #28a745;
-}
-
-.timer-button.start:hover {
-    background-color: #218838;
 }
 
 .timer-button.stop {
@@ -309,71 +544,76 @@ footer {
     background-color: #c82333;
 }
 
-.notification-section {
-    margin-bottom: 20px;
-}
-
-.subject-cards {
+.notification-section .subject-cards {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
 .subject-card {
-    flex: 1;
-    padding: 20px;
-    border: 1px solid #ccc;
+    background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    background-color: #f8f9fa;
+    padding: 20px;
+    width: calc(33.333% - 20px);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .subject-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.subject-card h3 {
-    margin-top: 0;
+.success-message, .failure-message {
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 .success-message {
-    color: #28a745;
+    background-color: #28a745;
+    color: #fff;
 }
 
 .failure-message {
-    color: #dc3545;
+    background-color: #dc3545;
+    color: #fff;
 }
 
 .summary-section table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 .summary-section th, .summary-section td {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     text-align: left;
 }
 
 .summary-section th {
-    background-color: #343a40;
-    color: #fff;
+    background-color: #f4f4f4;
     font-weight: bold;
 }
 
-.summary-section tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
 
-.summary-section tr:hover {
-    background-color: #ddd;
-}
 
-.summary-section td {
-    background-color: #ffffff;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -117,9 +117,10 @@ database_config.py
 credentials.json
 utils/credentials.json
 learnT
+sql_connector.py
 
 # Ignore SQL connection file
-utils/sql_connector.py
+
 
 # Ignore virtual environment directory
 venv/
@@ -131,5 +132,5 @@ env/
 Thumbs.db
 database.py
 database_test.ipynb
-postgresql/sql_connector.py
-postgresql/sql_connector.py
+
+

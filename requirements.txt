@@ -10,6 +10,9 @@ google-auth-httplib2
 google-auth-oauthlib
 gspread
 psycopg2-binary
+flask-login 
+flask-sqlalchemy
+
 
 
 

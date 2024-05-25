@@ -118,7 +118,7 @@ credentials.json
 learnT
 
 # Ignore SQL connection file
-utils/sql_connector.py
+
 
 # Ignore virtual environment directory
 venv/
@@ -128,6 +128,5 @@ env/
 # Ignore system files
 .DS_Store
 Thumbs.db
-database.py
-database_test.ipynb
+
 

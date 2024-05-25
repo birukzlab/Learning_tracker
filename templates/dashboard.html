@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
@@ -27,35 +27,22 @@
             </div>
         </nav>
     </header>
-    <main class="home-content">
-        <div class="welcome-section">
-            <h1>Welcome to Learning Tracker</h1>
-            <p>Your one-stop solution for planning and tracking your learning activities.</p>
-            {% if not current_user.is_authenticated %}
-                <a href="{{ url_for('register') }}" class="button">Get Started</a>
-            {% endif %}
+    <main class="dashboard-main">
+        <h1>Welcome, {{ current_user.username }}!</h1>
+        <p>Use the navigation above to access different parts of the application.</p>
+        <div class="dashboard-cards">
+            <div class="card">
+                <h2>Planning</h2>
+                <p>Plan your learning activities.</p>
+                <a href="{{ url_for('planning') }}" class="button">Go to Planning</a>
+            </div>
+            <div class="card">
+                <h2>Daily Time Tracker</h2>
+                <p>Track your daily learning progress.</p>
+                <a href="{{ url_for('tracker') }}" class="button">Go to Tracker</a>
+            </div>
         </div>
     </main>
-    <section class="features">
-        <h2>Features</h2>
-        <div class="feature-cards">
-            <div class="feature-card">
-                <img src="{{ url_for('static', filename='images/plan.png') }}" alt="Planning">
-                <h3>Plan Your Learning</h3>
-                <p>Create and manage your learning schedule effectively.</p>
-            </div>
-            <div class="feature-card">
-                <img src="{{ url_for('static', filename='images/track.png') }}" alt="Tracking">
-                <h3>Track Your Progress</h3>
-                <p>Monitor your daily learning progress and stay on track.</p>
-            </div>
-            <div class="feature-card">
-                <img src="{{ url_for('static', filename='images/analyze.png') }}" alt="Analytics">
-                <h3>Analyze Your Data</h3>
-                <p>Get insights into your learning patterns and improve.</p>
-            </div>
-        </div>
-    </section>
     <footer>
         <div class="footer-container">
             <p>&copy; 2024 Learning Tracker. All rights reserved.</p>
@@ -67,44 +54,6 @@
     </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

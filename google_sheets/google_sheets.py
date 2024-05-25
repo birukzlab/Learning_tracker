@@ -5,18 +5,7 @@ from googleapiclient.errors import HttpError
 import logging
 
 
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-SPREADSHEET_ID = '1Jx0h02X3ukJA4pIJocRyqQhBoj383ivPW4rumLqWqUs'
-RANGE_NAME = 'Sheet1!A2:D'
-'''
-creds = Credentials.from_service_account_file('utils/credentials.json', scopes=SCOPES)
-client = gspread.authorize(creds)
 
-workbook = client.open_by_key(SPREADSHEET_ID)
-
-sheets = workbook.worksheets()
-print(sheets)
-'''
 
 
 PLAN_SHEET_NAME = 'Sheet1'
